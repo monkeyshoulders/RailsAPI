@@ -1,17 +1,27 @@
+# class ArticlesController < ApplicationController
+#   def index
+#     articles = Article.all
+#     render json: articles
+#   end
+
+#   def show
+  
+#   end
+# end
+
 class ArticlesController < ApplicationController
   def index
-    render json: 'Heller'
+    render json: serializer.new(Article.all)
   end
+
 
   def show
-    render json: "These are the droids you are looking for"
+    render json: serializer.new(Article.find(params[:id]))
   end
 
-  def update
-    render json: "your patched in"
-  end
+  private
 
-  def destroy
-    render json: "EXTERMINATE! EXTERMINATE!"
+  def serializer
+    ArticleSerializer
   end
 end
